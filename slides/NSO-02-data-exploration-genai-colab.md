@@ -586,9 +586,7 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 
 ## Workshop 4 — EDA Pipeline
 
-### เปิด Notebook สำหรับรันบน Colab
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb)
+### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb)
 
 GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb
 
@@ -599,12 +597,6 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-ed
 3. ทำ Data Quality Check และปรับข้อมูล
 4. ทำ EDA และสรุปข้อค้นพบเบื้องต้น
 
-### ผลลัพธ์ที่คาดหวัง
-
-- Notebook ที่มี workflow ชัดเจน
-- สรุป Insight ระดับต้นเพื่อใช้ต่อใน Session ถัดไป
-
-> หมายเหตุ: ส่วน Workshop 5 และ  6 ด้านล่างเป็นโจทย์ต่อยอดด้วยชุดข้อมูล NSO
 
 ---
 
@@ -672,7 +664,7 @@ https://raw.githubusercontent.com/toche7/DataSets/refs/heads/main/nso_population
 
 <!-- _class: highlight -->
 
-## Workshop 6 — Household Finance Analysis Pipeline
+## Homework — Household Finance Analysis Pipeline
 
 ### โจทย์: วิเคราะห์ฐานะทางการเงินครัวเรือนไทยจาก NSO Open Data
 
