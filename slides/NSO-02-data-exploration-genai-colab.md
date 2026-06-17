@@ -48,9 +48,14 @@ Mahidol University
 
 1. Colab สำหรับผู้เริ่มต้น
 2. Basic Python + AI Prompting for Data Analysis
-3. การเตรียมข้อมูลสำหรับการวิเคราะห์
+3. Data Preparation & Quality Check
 4. Exploratory Data Analysis (EDA)
-5. Workshop 2: เตรียมข้อมูลและสำรวจข้อมูลด้วย AI
+5. Workshop Pipeline Series
+   - Workshop 2: Titanic Quick Start
+   - Workshop 3: Data Preparation Pipeline
+   - Workshop 4: EDA Pipeline
+   - Workshop 5: Population Statistics (NSO)
+   - Workshop 6: Household Finance (NSO)
 
 ---
 ## สร้างภาพด้วย Gemini 
@@ -607,14 +612,10 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-ed
 
 ## Workshop 5 — Population Statistics Pipeline
 
-### เปิด Notebook สำหรับรันบน Colab
+### โจทย์: EDA ข้อมูลประชากร  **Dataset:** ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb)
+### เปิด Notebook สำหรับรันบน Colab   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb)
 
-GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb
-
-### โจทย์: EDA ข้อมูลประชากร
- **Dataset:** ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
 
 https://catalog.nso.go.th/api/3/action/datastore_search?resource_id=57ff7cd9-27e3-4dc5-b6ad-e8280ab18a05&limit=5000
 

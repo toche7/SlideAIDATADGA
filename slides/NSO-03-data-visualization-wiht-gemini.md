@@ -15,7 +15,8 @@ footer: "Stat on Campus | Session 03"
 </style>
 
 <div class="logo-bar">
-  <img src="  ../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/nso.png" alt="NSO">
 </div>
 
 # Session 03
@@ -223,7 +224,9 @@ Mahidol University
 
 ---
 
-## Workshop 4
+## Workshop 6
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-06-data-visualization.ipynb)
 
 ### กิจกรรมฝึกปฏิบัติ
 
@@ -286,7 +289,7 @@ plt.show()
 </div>
 
 ---
-## Workshop 4: โหลดข้อมูลจาก GitHub
+## Workshop 6: โหลดข้อมูลจาก GitHub
 
 
 ### Dataset สำหรับฝึก
