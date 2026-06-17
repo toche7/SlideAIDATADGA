@@ -217,6 +217,7 @@ print(df.head())
 ## Workshop 2: เตรียมข้อมูลและสำรวจข้อมูลด้วย AI
 
 ### เปิด Notebook สำหรับรันบน Colab
+
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-president-heights-colab.ipynb)
 
 GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-president-heights-colab.ipynb
