@@ -607,6 +607,12 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-ed
 
 ## Workshop 5 — Population Statistics Pipeline
 
+### เปิด Notebook สำหรับรันบน Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb
+
 ### โจทย์: EDA ข้อมูลประชากร
  **Dataset:** ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
 
