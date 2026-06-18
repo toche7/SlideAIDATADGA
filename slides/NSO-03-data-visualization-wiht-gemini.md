@@ -634,3 +634,31 @@ plt.show()
 # Q&A
 
 เตรียมต่อ Session 04: AI-Assisted Reporting and Presentation
+
+
+---
+
+## วิทยากร
+
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
+*Asst. Prof. Taweesak Samanchuen, Ph.D.*
+
+- รองผู้อำนวยการฝ่ายดิจิทัลเทคโนโลยี **MULKC**
+- อาจารย์ประจำสาขา **ITM** คณะวิศวกรรมศาสตร์ มหาวิทยาลัยมหิดล
+- หัวหน้าโครงการ **CBTU** 
+
+🔗 [Profile](https://itm.eg.mahidol.ac.th/personnel/taweesak-samanchuen/)  
+📧 t.samanchuen@gmail.com
+☎ 081-441-4906
+
+websit: [cbtumu.net](https://cbtumu.net) | facebook: [cbtumu](https://www.facebook.com/CBTUMU/)
+
+
+---
+
+<!-- _class: lead -->
+
+# ขอบคุณครับ
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
