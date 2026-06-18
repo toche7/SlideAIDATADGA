@@ -39,18 +39,257 @@ Mahidol University
 
 1. เลือกประเภทกราฟให้เหมาะกับชนิดข้อมูลและเป้าหมาย
 2. ใช้ Gemini in Colab ช่วยออกแบบและสร้างกราฟได้รวดเร็วขึ้น
-3. ตีความผลจากกราฟอย่างถูกต้องและชัดเจน
-4. สื่อสารข้อมูลให้ผู้บริหารและผู้เกี่ยวข้องเข้าใจได้ง่าย
+3. อธิบายความสัมพันธ์ของตัวแปรด้วย correlation และ regression เบื้องต้น
+4. ตีความผลจากกราฟอย่างถูกต้องและชัดเจน
+5. สื่อสารข้อมูลให้ผู้บริหารและผู้เกี่ยวข้องเข้าใจได้ง่าย
 
 ---
 
 ## ภาพรวมเนื้อหา
 
-1. หลักการเลือกประเภทกราฟ
-2. แนวคิดการสื่อสารข้อมูลด้วย Visualization
-3. การใช้ AI ช่วยสร้างกราฟจากข้อมูล
-4. การตีความและเล่าเรื่องจากกราฟ
-5. Workshop 3
+1. Recall: สิ่งที่เรียนไปแล้วใน Session 01-02
+2. Univariate และ Bivariate Analysis
+3. Correlation และ Regression
+4. หลักการเลือกประเภทกราฟ
+5. แนวคิดการสื่อสารข้อมูลด้วย Visualization
+6. การใช้ AI ช่วยสร้างกราฟจากข้อมูล
+7. การตีความและเล่าเรื่องจากกราฟ
+8. Workshop 3
+
+---
+<!-- _class: lead -->
+# 1. Recall
+
+---
+## 1) Recall 
+
+- AI and ML
+- Colab with AI 
+- Basic Python for Data Analysis
+- Data Preprocessing
+- EDA 
+
+
+---
+<!-- _class: lead -->
+# 2. Univariate และ Bivariate Analysis
+
+---
+## Univariate Analysis
+
+### การวิเคราะห์ตัวแปรเดี่ยว
+
+- วิเคราะห์ตัวแปรทีละตัว โดยไม่คำนึงถึงความสัมพันธ์กับตัวแปรอื่น
+- เป้าหมาย: ทำความเข้าใจการกระจาย (distribution), ค่ากลาง, และ outlier
+- กราฟที่ใช้: Histogram, Boxplot, Bar chart
+
+| สถิติ | ความหมาย |
+|---|---|
+| Mean / Median | ค่ากลางของข้อมูล |
+| Std Dev | ความผันแปรของข้อมูล |
+| Min / Max | ขอบเขตของข้อมูล |
+
+---
+## ตัวอย่าง Univariate Analysis
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+# สถิติพื้นฐาน
+print(df.describe())
+# Histogram
+sns.histplot(df["Passenger"], bins=6, kde=True)
+plt.title("Number of Passenger")
+plt.show()
+```
+
+---
+## Univariate Analysis: Histogram
+<div class="center">
+<img src="../fig/histogram.png" alt="histogram" width="800">
+</div>
+
+---
+## Univariate Analysis: Boxplot
+
+<div class="columns">
+<div>
+- Boxplot แสดงค่ากลาง (median), quartiles, และ outliers ของข้อมูล
+- ช่วยให้เห็นการกระจายและความไม่สมมาตรของข้อมูล
+
+```python
+sns.boxplot(data=df, x="Passenger")
+plt.title("Boxplot of Passenger")
+plt.show()
+```
+
+</div>
+<div> 
+  <img src="../fig/boxplot.png" alt="boxplot" width="500">
+</div>
+</div>
+
+---
+## Bivariate Analysis
+
+### การวิเคราะห์ความสัมพันธ์ระหว่าง 2 ตัวแปร
+
+- วิเคราะห์ว่าตัวแปร 2 ตัวมีความสัมพันธ์กันอย่างไร
+- เป้าหมาย: หารูปแบบ (pattern) และแนวโน้มร่วมกัน
+- กราฟที่ใช้: Scatter plot, Box plot แยกกลุ่ม, Heatmap
+
+| ชนิดข้อมูล | วิธีวิเคราะห์ |
+|---|---|
+| Numeric + Numeric | Scatter plot, Correlation |
+| Numeric + Categorical | Boxplot, Grouped Bar chart |
+| Categorical + Categorical | Crosstab, Heatmap |
+
+---
+## ตัวอย่าง Bivariate Analysis
+
+<div class="columns">
+<div>
+
+```python
+# Scatter plot: Passenger vs Fuel Cost
+sns.scatterplot(data=df, x="Passenger", y="Fuel Cost")
+plt.title("Passenger vs Fuel Cost")
+plt.show()
+
+# Correlation matrix
+print(df[["Passenger", "Fuel Cost"]].corr())
+```
+</div>
+<div>
+  <img src="../fig/correlation.png" alt="bar correlation" width="450">
+</div>
+</div>
+
+---
+<!-- _class: lead -->
+# 3. Correlation และ Regression
+
+---
+## Correlation
+
+<div class="columns">
+<div>
+
+-	Correlation (สหสัมพันธ์) เป็นการวิเคราะห์ความสัมพันธ์ระหว่างข้อมูลตั้งแต่ 2 ตัวขึ้นไปว่ามี
+ความสัมพันธ์กันในระดับใด และมีความสัมพันธ์ในทิศทางใด
+-	เช่น ความสูงกับน้ำหนักของคน มีความสัมพันธ์กันมากหรือน้อยและมีความสัมพันธ์ในทิศทางเดียวกัน หรือตรงกันข้าม
+</div>
+<div>
+  <img src="../fig/correlation.png" alt="bar correlation" width="600">
+</div>
+</div>
+
+---
+## Correlation Coefficient
+
+- Correlation Coefficient คือค่าสถิติอย่างง่ายที่ใช้แสดงว่าความสัมพันธ์ระหว่างข้อมูล ว่ามีค่ามาก น้อยเพียงใดและอยู่ในทิศทางใด
+- โดยมีสูตรพื้นฐานที่ใช้กันคือ Pearson Product Moment Correlation Coefficient
+$$
+r = \frac{cov(X, Y)}{ (std(X) * std(Y))} \tag{1}
+$$
+
+$$
+r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}} \tag{2}
+$$
+
+>จะใช้ pearson correlation เมื่อข้อมูลเป็น continuous และมีความสัมพันธ์เชิงเส้น ถ้าเป็น categorical จะใช้ spearman correlation หรือ chi-square test แทน
+
+
+---
+## Correlation Coefficient Interpretation
+- ค่า `r` ใกล้ `1` = ไปทิศทางเดียวกัน
+- ค่า `r` ใกล้ `-1` = สวนทางกัน
+- ค่า `r` ใกล้ `0` = ความสัมพันธ์เชิงเส้นน้อย
+
+
+<img src="../fig/threecorrelation.png" alt="bar correlation" width="1150">
+
+---
+## ตัวอย่างการคำนวณ Correlation ด้วย Python
+
+```python
+import pandas as pd
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+correlation = df["Passenger"].corr(df["Fuel Cost"])
+print(f"Correlation between Passenger and Fuel Cost: {correlation:.2f}")
+```
+
+
+---
+
+## Regression
+
+
+<div class="columns">
+<div>
+
+### ใช้สร้างสมการทำนาย
+$$
+\hat{y} = \theta_0 + \theta_1 \cdot x_1
+$$
+
+- $\theta_1$ บอกว่า $\hat{y}$ (Fuel Cost) เปลี่ยนเท่าไรเมื่อ $x_1$ (Passenger) เพิ่ม 1 หน่วย
+- ใช้สื่อสารแนวโน้มและประมาณค่าได้อย่างรวดเร็ว
+- ควรตรวจ outlier และ residual ก่อนนำไปใช้จริง
+
+</div>
+<div>
+  <img src="../fig/regression.png" alt="bar correlation" width="600">
+</div>
+</div>
+
+---
+
+## ตัวอย่างโค้ด
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+X = df[["Passenger"]]
+y = df["Fuel Cost"]
+model = LinearRegression().fit(X, y)
+sns.regplot(data=df, x="Passenger", y="Fuel Cost", line_kws={"color": "red"}, ci=98)
+plt.title(f"Passenger vs Fuel Cost ( R²={model.score(X, y):.2f})")
+plt.show()
+```
+
+
+---
+
+## Prompt ที่แนะนำ
+
+```prompt
+ใช้ไฟล์ cost.xlsx จาก GitHub นี้
+1) โหลดข้อมูลด้วย pandas
+2) สร้าง scatter plot และ regression line
+3) คำนวณ correlation ระหว่าง Passenger กับ Fuel Cost
+4) อธิบายผลเป็นภาษาไทยแบบที่ใช้สอนผู้เรียนได้
+```
+
+### จุดที่ให้ผู้เรียนสังเกต
+
+- เมื่อ Passenger เพิ่มขึ้น Fuel Cost เปลี่ยนอย่างไร
+- เส้น regression อธิบายข้อมูลได้ดีแค่ไหน
+- ความสัมพันธ์ที่เห็นเป็นเหตุผลหรือเพียงความสัมพันธ์
+
+
+
+---
+<!-- _class: lead -->
+# 4. Visualization เพื่อการสื่อสาร
 
 ---
 
@@ -221,6 +460,7 @@ Mahidol University
 
 - สรุปเหตุ-ผลจากความสัมพันธ์เพียงอย่างเดียว
 - ใช้กราฟ 3D หรือเอฟเฟกต์ที่ทำให้ตีความคลาดเคลื่อน
+
 
 ---
 
