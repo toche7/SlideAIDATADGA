@@ -274,7 +274,7 @@ print(df.head())
   - เช่น +, -, *, /, %, **, //, และการใช้ฟังก์ชัน math
 
 
-**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI3.ipynb)
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI2.ipynb)
 
 
 
@@ -289,7 +289,7 @@ print(df.head())
   - ได้แก่ for, while
 
 
-**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI2.ipynb)
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI3.ipynb)
 
 
 ---
@@ -308,7 +308,7 @@ print(df.head())
 
 
   
-**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI2.ipynb)
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI4.ipynb)
 
 
 ---
