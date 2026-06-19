@@ -50,12 +50,10 @@ Mahidol University
 1. Recall: สิ่งที่เรียนไปแล้วใน Session 01-02
 2. Univariate และ Bivariate Analysis
 3. Correlation และ Regression
-4. หลักการเลือกประเภทกราฟ
-5. แนวคิดการสื่อสารข้อมูลด้วย Visualization
-6. การใช้ AI ช่วยสร้างกราฟจากข้อมูล
-7. การตีความและเล่าเรื่องจากกราฟ
-8. Workshop 3
-
+4. Visualization เพื่อการสื่อสาร
+5. Workshop 6: Data Visualization with Gemini in Colab
+6. LLM for Data Extraction
+  
 ---
 <!-- _class: lead -->
 # 1. Recall
@@ -463,6 +461,10 @@ plt.show()
 
 
 ---
+<!-- _class: lead -->
+# 5. Workshop 6: Data Visualization with Gemini in Colab
+
+---
 
 ## Workshop 6
 
@@ -619,13 +621,56 @@ plt.show()
 - เวลารอที่ลดลงสัมพันธ์กับความพึงพอใจหรือไม่
 - จังหวัดใดมีโอกาสเพิ่มสัดส่วนบริการออนไลน์ได้อีก
 
+
+
 ---
 
-## สรุป Session 03
+---
+<!-- _class: lead -->
+# 6. LLM for Data Extraction
 
-- กราฟที่ดีต้องตอบคำถามเชิงนโยบายได้
-- AI ช่วยเร่งขั้นตอน แต่การตีความยังต้องอาศัยผู้เชี่ยวชาญ
-- Visualization คือสะพานจากข้อมูลสู่การตัดสินใจ
+---
+## Workshop 7: LLM for Data Extraction
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-07-llm-data-extraction-groq.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-07-llm-data-extraction-groq.ipynb
+
+### กิจกรรมฝึกปฏิบัติ
+
+1. ตั้งค่า Groq API key ใน Colab
+2. Extract ข้อมูลแบบมีโครงสร้างจากข้อความที่ไม่มีโครงสร้าง
+3. ทำ Sentiment Analysis เป็น positive/neutral/negative
+4. สรุปผลลัพธ์เป็นตารางสำหรับนำเสนอ
+
+---
+## Unstructured Data Extraction
+
+- We can use LLM to extract structured data from unstructured data sources such as PDF, Word, and Excel files.
+
+- Moreover, we can use LLM to do sentiment analysis, topic modeling, and text summarization.
+
+---
+## Connect with LLM for Data Extraction
+
+- We can connect to LLM for example Groq.com 
+
+- We are going to use Colab to connect to LLM for data extraction and analysis.
+
+- We need to install the required libraries and set up the API key for authentication.
+
+- We have to apply to Groq.com to get the API key and set it up in Colab.
+
+### Demo: Connecting to LLM for Data Extraction
+
+---
+## Sentiment Analysis with LLM
+
+- We can use LLM to analyze the sentiment of text data. For example, we can analyze customer reviews, social media posts, and survey responses.
+
+- We can use LLM to classify the sentiment as positive, negative, or neutral.
+
+Demo: Sentiment Analysis with LLM
 
 ---
 
