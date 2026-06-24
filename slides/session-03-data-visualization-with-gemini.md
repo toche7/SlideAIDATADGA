@@ -10,11 +10,11 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 03"
 
 <style scoped>
 .logo-bar { position: absolute; top: 36px; right: 64px; display: flex; align-items: center; gap: 16px; }
-.logo-bar img { width: 100px; height: 100px; object-fit: contain; }
+.logo-bar img { width: 250px; height: 100px; object-fit: contain; }
 </style>
 
 <div class="logo-bar">
-  <img src="  ../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/DGA-TDGA.jpg" alt="Digital Government Development Agency (DGA)">
 </div>
 
 # Session 03
@@ -22,6 +22,9 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 03"
 # Data Visualization with Gemini in Colab
 
 หลักสูตร: การใช้ Generative AI เพื่อการวิเคราะห์ข้อมูลสำหรับภาครัฐ
+
+Asst. Prof. Taweesak Samanchuen, Ph.D.
+Mahidol University
 
 ---
 
@@ -31,18 +34,255 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 03"
 
 1. เลือกประเภทกราฟให้เหมาะกับชนิดข้อมูลและเป้าหมาย
 2. ใช้ Gemini in Colab ช่วยออกแบบและสร้างกราฟได้รวดเร็วขึ้น
-3. ตีความผลจากกราฟอย่างถูกต้องและชัดเจน
-4. สื่อสารข้อมูลให้ผู้บริหารและผู้เกี่ยวข้องเข้าใจได้ง่าย
+3. อธิบายความสัมพันธ์ของตัวแปรด้วย correlation และ regression เบื้องต้น
+4. ตีความผลจากกราฟอย่างถูกต้องและชัดเจน
+5. สื่อสารข้อมูลให้ผู้บริหารและผู้เกี่ยวข้องเข้าใจได้ง่าย
 
 ---
 
 ## ภาพรวมเนื้อหา
 
-1. หลักการเลือกประเภทกราฟ
-2. แนวคิดการสื่อสารข้อมูลด้วย Visualization
-3. การใช้ AI ช่วยสร้างกราฟจากข้อมูล
-4. การตีความและเล่าเรื่องจากกราฟ
-5. Workshop 3
+1. Recall: สิ่งที่เรียนไปแล้วใน Session 01-02
+2. Univariate และ Bivariate Analysis
+3. Correlation และ Regression
+4. Visualization เพื่อการสื่อสาร
+5. Workshop 6: Data Visualization with Gemini in Colab
+6. LLM for Data Extraction
+  
+---
+<!-- _class: lead -->
+# 1. Recall
+
+---
+## 1) Recall 
+
+- AI and ML
+- Colab with AI 
+- Basic Python for Data Analysis
+- Data Preprocessing
+- EDA 
+
+
+---
+<!-- _class: lead -->
+# 2. Univariate และ Bivariate Analysis
+
+---
+## Univariate Analysis
+
+### การวิเคราะห์ตัวแปรเดี่ยว
+
+- วิเคราะห์ตัวแปรทีละตัว โดยไม่คำนึงถึงความสัมพันธ์กับตัวแปรอื่น
+- เป้าหมาย: ทำความเข้าใจการกระจาย (distribution), ค่ากลาง, และ outlier
+- กราฟที่ใช้: Histogram, Boxplot, Bar chart
+
+| สถิติ | ความหมาย |
+|---|---|
+| Mean / Median | ค่ากลางของข้อมูล |
+| Std Dev | ความผันแปรของข้อมูล |
+| Min / Max | ขอบเขตของข้อมูล |
+
+---
+## ตัวอย่าง Univariate Analysis
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+# สถิติพื้นฐาน
+print(df.describe())
+# Histogram
+sns.histplot(df["Passenger"], bins=6, kde=True)
+plt.title("Number of Passenger")
+plt.show()
+```
+
+---
+## Univariate Analysis: Histogram
+<div class="center">
+<img src="../fig/histogram.png" alt="histogram" width="800">
+</div>
+
+---
+## Univariate Analysis: Boxplot
+
+<div class="columns">
+<div>
+- Boxplot แสดงค่ากลาง (median), quartiles, และ outliers ของข้อมูล
+- ช่วยให้เห็นการกระจายและความไม่สมมาตรของข้อมูล
+
+```python
+sns.boxplot(data=df, x="Passenger")
+plt.title("Boxplot of Passenger")
+plt.show()
+```
+
+</div>
+<div> 
+  <img src="../fig/boxplot.png" alt="boxplot" width="500">
+</div>
+</div>
+
+---
+## Bivariate Analysis
+
+### การวิเคราะห์ความสัมพันธ์ระหว่าง 2 ตัวแปร
+
+- วิเคราะห์ว่าตัวแปร 2 ตัวมีความสัมพันธ์กันอย่างไร
+- เป้าหมาย: หารูปแบบ (pattern) และแนวโน้มร่วมกัน
+- กราฟที่ใช้: Scatter plot, Box plot แยกกลุ่ม, Heatmap
+
+| ชนิดข้อมูล | วิธีวิเคราะห์ |
+|---|---|
+| Numeric + Numeric | Scatter plot, Correlation |
+| Numeric + Categorical | Boxplot, Grouped Bar chart |
+| Categorical + Categorical | Crosstab, Heatmap |
+
+---
+## ตัวอย่าง Bivariate Analysis
+
+<div class="columns">
+<div>
+
+```python
+# Scatter plot: Passenger vs Fuel Cost
+sns.scatterplot(data=df, x="Passenger", y="Fuel Cost")
+plt.title("Passenger vs Fuel Cost")
+plt.show()
+
+# Correlation matrix
+print(df[["Passenger", "Fuel Cost"]].corr())
+```
+</div>
+<div>
+  <img src="../fig/correlation.png" alt="bar correlation" width="450">
+</div>
+</div>
+
+---
+<!-- _class: lead -->
+# 3. Correlation และ Regression
+
+---
+## Correlation
+
+<div class="columns">
+<div>
+
+-	Correlation (สหสัมพันธ์) เป็นการวิเคราะห์ความสัมพันธ์ระหว่างข้อมูลตั้งแต่ 2 ตัวขึ้นไปว่ามี
+ความสัมพันธ์กันในระดับใด และมีความสัมพันธ์ในทิศทางใด
+-	เช่น ความสูงกับน้ำหนักของคน มีความสัมพันธ์กันมากหรือน้อยและมีความสัมพันธ์ในทิศทางเดียวกัน หรือตรงกันข้าม
+</div>
+<div>
+  <img src="../fig/correlation.png" alt="bar correlation" width="600">
+</div>
+</div>
+
+---
+## Correlation Coefficient
+
+- Correlation Coefficient คือค่าสถิติอย่างง่ายที่ใช้แสดงว่าความสัมพันธ์ระหว่างข้อมูล ว่ามีค่ามาก น้อยเพียงใดและอยู่ในทิศทางใด
+- โดยมีสูตรพื้นฐานที่ใช้กันคือ Pearson Product Moment Correlation Coefficient
+$$
+r = \frac{cov(X, Y)}{ (std(X) * std(Y))} \tag{1}
+$$
+
+$$
+r = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum (X_i - \bar{X})^2 \sum (Y_i - \bar{Y})^2}} \tag{2}
+$$
+
+>จะใช้ pearson correlation เมื่อข้อมูลเป็น continuous และมีความสัมพันธ์เชิงเส้น ถ้าเป็น categorical จะใช้ spearman correlation หรือ chi-square test แทน
+
+
+---
+## Correlation Coefficient Interpretation
+- ค่า `r` ใกล้ `1` = ไปทิศทางเดียวกัน
+- ค่า `r` ใกล้ `-1` = สวนทางกัน
+- ค่า `r` ใกล้ `0` = ความสัมพันธ์เชิงเส้นน้อย
+
+
+<img src="../fig/threecorrelation.png" alt="bar correlation" width="1150">
+
+---
+## ตัวอย่างการคำนวณ Correlation ด้วย Python
+
+```python
+import pandas as pd
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+correlation = df["Passenger"].corr(df["Fuel Cost"])
+print(f"Correlation between Passenger and Fuel Cost: {correlation:.2f}")
+```
+
+
+---
+
+## Regression
+
+
+<div class="columns">
+<div>
+
+### ใช้สร้างสมการทำนาย
+$$
+\hat{y} = \theta_0 + \theta_1 \cdot x_1
+$$
+
+- $\theta_1$ บอกว่า $\hat{y}$ (Fuel Cost) เปลี่ยนเท่าไรเมื่อ $x_1$ (Passenger) เพิ่ม 1 หน่วย
+- ใช้สื่อสารแนวโน้มและประมาณค่าได้อย่างรวดเร็ว
+- ควรตรวจ outlier และ residual ก่อนนำไปใช้จริง
+
+</div>
+<div>
+  <img src="../fig/regression.png" alt="bar correlation" width="600">
+</div>
+</div>
+
+---
+
+## ตัวอย่างโค้ด
+
+```python
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
+df = pd.read_excel(url)
+X = df[["Passenger"]]
+y = df["Fuel Cost"]
+model = LinearRegression().fit(X, y)
+sns.regplot(data=df, x="Passenger", y="Fuel Cost", line_kws={"color": "red"}, ci=98)
+plt.title(f"Passenger vs Fuel Cost ( R²={model.score(X, y):.2f})")
+plt.show()
+```
+
+
+---
+
+## Prompt ที่แนะนำ
+
+```prompt
+ใช้ไฟล์ cost.xlsx จาก GitHub นี้
+1) โหลดข้อมูลด้วย pandas
+2) สร้าง scatter plot และ regression line
+3) คำนวณ correlation ระหว่าง Passenger กับ Fuel Cost
+4) อธิบายผลเป็นภาษาไทยแบบที่ใช้สอนผู้เรียนได้
+```
+
+### จุดที่ให้ผู้เรียนสังเกต
+
+- เมื่อ Passenger เพิ่มขึ้น Fuel Cost เปลี่ยนอย่างไร
+- เส้น regression อธิบายข้อมูลได้ดีแค่ไหน
+- ความสัมพันธ์ที่เห็นเป็นเหตุผลหรือเพียงความสัมพันธ์
+
+
+
+---
+<!-- _class: lead -->
+# 4. Visualization เพื่อการสื่อสาร
 
 ---
 
@@ -214,9 +454,16 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 03"
 - สรุปเหตุ-ผลจากความสัมพันธ์เพียงอย่างเดียว
 - ใช้กราฟ 3D หรือเอฟเฟกต์ที่ทำให้ตีความคลาดเคลื่อน
 
+
+---
+<!-- _class: lead -->
+# 5. Workshop 6: Data Visualization with Gemini in Colab
+
 ---
 
-## Workshop 4
+## Workshop 6
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-06-data-visualization.ipynb)
 
 ### กิจกรรมฝึกปฏิบัติ
 
@@ -279,7 +526,7 @@ plt.show()
 </div>
 
 ---
-## Workshop 4: โหลดข้อมูลจาก GitHub
+## Workshop 6: โหลดข้อมูลจาก GitHub
 
 
 ### Dataset สำหรับฝึก
@@ -369,13 +616,54 @@ plt.show()
 - เวลารอที่ลดลงสัมพันธ์กับความพึงพอใจหรือไม่
 - จังหวัดใดมีโอกาสเพิ่มสัดส่วนบริการออนไลน์ได้อีก
 
+
+
 ---
+<!-- _class: lead -->
+# 6. LLM for Data Extraction
 
-## สรุป Session 03
+---
+## Workshop 7: LLM for Data Extraction
 
-- กราฟที่ดีต้องตอบคำถามเชิงนโยบายได้
-- AI ช่วยเร่งขั้นตอน แต่การตีความยังต้องอาศัยผู้เชี่ยวชาญ
-- Visualization คือสะพานจากข้อมูลสู่การตัดสินใจ
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-07-llm-data-extraction-groq.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-07-llm-data-extraction-groq.ipynb
+
+### กิจกรรมฝึกปฏิบัติ
+
+1. ตั้งค่า Groq API key ใน Colab
+2. Extract ข้อมูลแบบมีโครงสร้างจากข้อความที่ไม่มีโครงสร้าง
+3. ทำ Sentiment Analysis เป็น positive/neutral/negative
+4. สรุปผลลัพธ์เป็นตารางสำหรับนำเสนอ
+
+---
+## Unstructured Data Extraction
+
+- We can use LLM to extract structured data from unstructured data sources such as PDF, Word, and Excel files.
+
+- Moreover, we can use LLM to do sentiment analysis, topic modeling, and text summarization.
+
+---
+## Connect with LLM for Data Extraction
+
+- We can connect to LLM for example Groq.com 
+
+- We are going to use Colab to connect to LLM for data extraction and analysis.
+
+- We need to install the required libraries and set up the API key for authentication.
+
+- We have to apply to Groq.com to get the API key and set it up in Colab.
+
+### Demo: Connecting to LLM for Data Extraction
+
+---
+## Sentiment Analysis with LLM
+
+- We can use LLM to analyze the sentiment of text data. For example, we can analyze customer reviews, social media posts, and survey responses.
+
+- We can use LLM to classify the sentiment as positive, negative, or neutral.
+
+Demo: Sentiment Analysis with LLM
 
 ---
 
@@ -384,3 +672,31 @@ plt.show()
 # Q&A
 
 เตรียมต่อ Session 04: AI-Assisted Reporting and Presentation
+
+
+---
+
+## วิทยากร
+
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
+*Asst. Prof. Taweesak Samanchuen, Ph.D.*
+
+- รองผู้อำนวยการฝ่ายดิจิทัลเทคโนโลยี **MULKC**
+- อาจารย์ประจำสาขา **ITM** คณะวิศวกรรมศาสตร์ มหาวิทยาลัยมหิดล
+- หัวหน้าโครงการ **CBTU** 
+
+🔗 [Profile](https://itm.eg.mahidol.ac.th/personnel/taweesak-samanchuen/)  
+📧 t.samanchuen@gmail.com
+☎ 081-441-4906
+
+websit: [cbtumu.net](https://cbtumu.net) | facebook: [cbtumu](https://www.facebook.com/CBTUMU/)
+
+
+---
+
+<!-- _class: lead -->
+
+# ขอบคุณครับ
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**

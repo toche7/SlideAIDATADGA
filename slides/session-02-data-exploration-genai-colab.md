@@ -10,11 +10,11 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 02"
 
 <style scoped>
 .logo-bar { position: absolute; top: 36px; right: 64px; display: flex; align-items: center; gap: 16px; }
-.logo-bar img { width: 100px; height: 100px; object-fit: contain; }
+.logo-bar img { width: 250px; height: 100px; object-fit: contain; }
 </style>
 
 <div class="logo-bar">
-  <img src="../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/DGA-TDGA.jpg" alt="Digital Government Development Agency (DGA)">
 </div>
 
 # Session 02
@@ -22,6 +22,9 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 02"
 # การสำรวจและวิเคราะห์ข้อมูลด้วย Generative AI และ Google Colab
 
 หลักสูตร: การใช้ Generative AI เพื่อการวิเคราะห์ข้อมูลสำหรับภาครัฐ
+
+Asst. Prof. Taweesak Samanchuen, Ph.D.
+Mahidol University
 
 ---
 
@@ -35,6 +38,21 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 02"
 4. ตรวจสอบและเตรียมข้อมูลก่อนวิเคราะห์ได้เป็นระบบ
 5. ใช้ Generative AI ช่วยสำรวจข้อมูลเบื้องต้นได้
 
+
+---
+
+## สารบัญ 
+
+1. Colab สำหรับผู้เริ่มต้น
+2. Basic Python + AI Prompting for Data Analysis
+3. Data Preparation & Quality Check
+4. Exploratory Data Analysis (EDA)
+5. Workshop Pipeline Series
+   - Workshop 2: Titanic Quick Start
+   - Workshop 3: Data Preparation Pipeline
+   - Workshop 4: EDA Pipeline
+   - Workshop 5: Population Statistics (NSO)
+   - Workshop 6: Household Finance (NSO)
 
 ---
 ## สร้างภาพด้วย Gemini 
@@ -73,6 +91,13 @@ https://github.com/toche7/DataSets/blob/main/president_heights.csv
 ### ใช้เทคโนโลยีที่ต่างกันคือ
 - ภาพ super hero ใช้ Generative AI (model: nano-Banana) ในการสร้างสรรค์ภาพตามคำอธิบายที่ให้ไป
 - ภาพ Histogram ใช้เทคนิคการวิเคราะห์ข้อมูลและการสร้างกราฟจากข้อมูลที่มีอยู่แล้ว โดยอาจใช้เครื่องมือเช่น Python, R หรือซอฟต์แวร์วิเคราะห์ข้อมูลอื่น ๆ ในการสร้างกราฟนี้
+
+
+---
+
+<!-- _class: lead -->
+
+# Colab สำหรับผู้เริ่มต้น
 
 ---
 
@@ -210,7 +235,194 @@ print(df.head())
 - สรุปสถิติเบื้องต้นและกราฟพื้นฐาน
 
 ---
+
+<!-- _class: lead -->
+
+# Basic Python + AI Prompting for Data Analysis
+
+
+---
+## Basic Python + AI Prompting
+
+
+1. Python พื้นฐานสำหรับงานข้อมูล 
+2. numpy พื้นฐานที่ต้องใช้จริง
+3. pandas พื้นฐานที่ต้องใช้จริง 
+
+
+### เป้าหมายช่วงนี้
+
+- ให้ผู้เรียน "สั่ง AI ได้งานที่ตรงโจทย์"
+- ให้ผู้เรียน "อ่านและตรวจโค้ดได้อย่างมั่นใจ"
+
+
+
+---
+
+## Basic Python
+
+- ตัวแปรและชนิดข้อมูล (Variables and Data Types)
+  - ได้แก่ชนิดข้อมูลพื้นฐาน เช่น int, float, str, bool
+- การรับและแสดงผลข้อมูล (Input and Output)
+  - เช่น print(), input(), display()
+- การควบคุมการทำงาน (Control Flow)
+  - เช่น if-else, for loop, while loop
+- การคำนวณทางคณิตศาสตร์เบื้องต้น (Basic Arithmetic Operations)
+  - เช่น +, -, *, /, %, **, //, และการใช้ฟังก์ชัน math
+
+
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI2.ipynb)
+
+
+
+
+---
+
+## Control Flow
+
+- คำสั่งเงื่อนไข (Conditional Statements)
+  - ได้แก่ if, elif, else
+- การวนลูป (Loops)
+  - ได้แก่ for, while
+
+
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI3.ipynb)
+
+
+---
+
+## Functions
+
+- การสร้างฟังก์ชัน (Defining Functions)
+  - ใช้ def ชื่อฟังก์ชัน(พารามิเตอร์):
+  - การเรียกใช้ฟังก์ชัน (Calling Functions)
+- การใช้พารามิเตอร์และค่าที่คืนกลับ (Parameters and Return Values)
+  - การส่งค่าผ่านพารามิเตอร์
+  - การคืนค่าผ่าน return statement
+- การเขียนโค้ดแบบแยกส่วน (Modular Code)
+  - การ save ด้วย %%writefile เป็นฟังก์ชันที่ใช้ซ้ำในไฟล์ .py แล้ว import  มาใช้ เช่น %%writefile calRectang.py 
+  - การเรียนรู้การ import ฟังก์ชันจากไฟล์ .py มาใช้ใน Colab 
+
+
+  
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI4.ipynb)
+
+
+---
+## ข้อมูลประเภท List 
+
+- การสร้าง List และการเข้าถึงสมาชิก (Creating and Accessing Lists)
+  - เช่น my_list = [1, 2, 3, 4, 5]
+- การเข้าถึงสมาชิกด้วย index เช่น my_list[0] จะได้ค่า 1
+- การเข้าถึงสมาชิกจากท้าย list เช่น my_list[-1] จะได้ค่า 5
+- การเข้าถึงสมาชิกแบบ slice เช่น my_list[1:4] จะได้ค่า [2, 3, 4]
+- การใช้ for loop เพื่อวนลูปผ่านสมาชิกของ list เช่น for item in my_list: print(item)
+
+**Click on icon for lab:** [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/PythonwithAI/blob/main/PythonAI5.ipynb)
+
+
+---
+## Numpy พื้นฐานที่ใช้บ่อย
+
+Numpy เป็น library สำหรับการคำนวณเชิงตัวเลขและการจัดการ array ใน Python
+<div class="columns">
+<div>
+ตัวอย่างการใช้ 
+
+```python
+import numpy as np
+# สร้าง array 1 มิติ
+a = np.array([1, 2, 3, 4, 5])
+# สร้าง array 2 มิติ
+b = np.array([[1, 2, 3], [4, 5, 6]])
+# การบวก array
+c = np.array([6, 7, 8, 9, 10])  
+```
+
+
+</div>
+<div>
+
+```python
+# การบวก array กับ array
+d = b + c  # บวกสมาชิกของ b กับ c
+
+# การคูณ array กับ array 
+e = b * c  # คูณสมาชิกของ b กับ c
+
+# การคำนวณสถิติพื้นฐาน
+mean_value = np.mean(a)  # ค่าเฉลี่ยของ a
+max_value = np.max(a)  # ค่ามากที่สุดของ a
+min_value = np.min(a)  # ค่าน้อยที่สุดของ a
+```
+
+---
+
+## Pandas พื้นฐานที่ใช้บ่อย
+
+### คำสั่งหลัก 6 ตัว
+
+1. `read_csv()` อ่านไฟล์
+2. `head()` ดูตัวอย่างข้อมูล
+3. `info()` ดูชนิดข้อมูลและ missing
+4. `describe()` ดูสถิติพื้นฐาน
+5. `isna().sum()` นับ missing values
+6. `groupby()` สรุปผลตามกลุ่ม
+
+### เป้าหมาย
+
+- ดูโครงสร้างข้อมูลให้เป็นก่อนวิเคราะห์
+
+
+---
+## ตัวอย่าง pandas workflow แบบสั้น
+
+```python
+import pandas as pd
+
+df = pd.read_csv('/content/president_heights.csv')
+print(df.head())
+print(df.info())
+print(df.describe(include='all'))
+print(df.isna().sum())
+```
+
+### จุดสังเกต
+
+- ถ้าชื่อคอลัมน์ผิด โค้ดจะพังทันที
+- ถ้ามี missing มาก ต้องจัดการก่อนสรุปผล
+
+---
+## Activity 1 (5 นาที): ให้ AI เขียนโค้ดสำรวจข้อมูลให้เรา
+
+1. ดาวโหลดไฟล์ presidents.csv ที่
+https://github.com/toche7/DataSets/blob/main/president_heights.csv
+2. upload ไฟล์ขึ้น Colab
+3. ใช้ prompt ต่อไปนี้ให้ AI ช่วยเขียนโค้ดสำรวจข้อมูลให้เรา
+```prompt
+ช่วยเขียนโค้ด Python ใน Google Colab เพื่ออ่านไฟล์ /content/president_heights.csv
+จากนั้นแสดงผล head(), info(), describe(), และจำนวน missing values รายคอลัมน์
+ให้โค้ดรันได้ทันทีและมีคอมเมนต์สั้นๆ อธิบายแต่ละขั้นตอน
+```
+
+### เกณฑ์ผ่านกิจกรรม
+
+- รันได้จริงโดยไม่แก้เกิน 2 จุด
+- ผู้เรียนอธิบายได้ว่าแต่ละบรรทัดทำอะไร
+
+
+
+
+
+
+---
 ## Workshop 2: เตรียมข้อมูลและสำรวจข้อมูลด้วย AI
+
+### เปิด Notebook สำหรับรันบน Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-president-heights-colab.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-president-heights-colab.ipynb
 
 ### กิจกรรมฝึกปฏิบัติ
 1. ใช้ข้อมูล president_heights.csv ที่อัปโหลดใน Colab
@@ -229,15 +441,9 @@ print(df.head())
 
 ---
 
-## ภาพรวมเนื้อหา
+<!-- _class: lead -->
 
-1. ปูพื้นฐาน Colab สำหรับผู้เริ่มต้น
-2. ทดลองใช้ Colab + AI  
-3. **การกำหนดโจทย์การวิเคราะห์ข้อมูล**
-4. การเตรียมข้อมูลสำหรับการวิเคราะห์
-5. Exploratory Data Analysis (EDA)
-6. Workshop 2: เตรียมข้อมูลและสำรวจข้อมูลด้วย AI
-
+# Data Preparation 
 ---
 
 ## 1) การกำหนดโจทย์การวิเคราะห์ข้อมูล
@@ -301,10 +507,47 @@ print(df.head())
 ช่วยเขียนโค้ด Python เพื่อตรวจสอบและลบแถวที่มีเลขคำขอซ้ำกันในคอลัมน์ `request_id` พร้อมอธิบายโค้ดทีละบรรทัด"
 ```
 
+---
+## Data Preparation Checklist
+
+รายการตรวจสอบและจัดการข้อมูลเบื้องต้นที่ควรทำก่อนวิเคราะห์
+1. ตรวจสอบ missing values และค่าผิดรูปแบบ
+2. ตรวจสอบความซ้ำซ้อนของรายการข้อมูล
+3. ตรวจสอบความสอดคล้องของหน่วยและรหัสข้อมูล
+4. ตรวจสอบ outliers และจัดการตามความเหมาะสม
+5. แปลงชนิดข้อมูลให้เหมาะสม
+6. สร้างคอลัมน์ใหม่เพื่อการวิเคราะห์
+7. จัดตารางให้อยู่ในรูปแบบ tidy data
+
+---
+## Workshop 3 — Data Preparation Pipeline
+
+### เปิด Notebook สำหรับรันบน Colab
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb
+
+### กิจกรรมฝึกปฏิบัติ
+
+1. โหลด Titanic dataset (seaborn หรือ fallback CSV)
+2. ตรวจ missing values, duplicates, และ data types
+3. ทำความสะอาดข้อมูล (เติมค่า `age`, `embarked`, `fare`)
+4. ตรวจ outlier ของ `fare` และสร้าง tidy summary (`survival_rate`)
+5. export ไฟล์ผลลัพธ์สำหรับ EDA ต่อ
+
+
+
 
 ---
 
-## 3) Exploratory Data Analysis (EDA)
+<!-- _class: lead -->
+
+# Exploratory Data Analysis (EDA)
+
+---
+
+## Exploratory Data Analysis (EDA)
 
 ### สิ่งที่ต้องตอบให้ได้
 
@@ -338,28 +581,30 @@ print(df.head())
 
 ---
 
-## Workshop 3
+## Workshop 4 — EDA Pipeline
+
+### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb)
+
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb
 
 ### กิจกรรมฝึกปฏิบัติ
 
-1. รับโจทย์ข้อมูลภาครัฐตัวอย่าง
+1. ใช้ Titanic dataset ที่ผ่าน Data Preparation แล้ว
 2. กำหนดคำถามการวิเคราะห์ 2-3 ข้อ
 3. ทำ Data Quality Check และปรับข้อมูล
 4. ทำ EDA และสรุปข้อค้นพบเบื้องต้น
 
-### ผลลัพธ์ที่คาดหวัง
-
-- Notebook ที่มี workflow ชัดเจน
-- สรุป Insight ระดับต้นเพื่อใช้ต่อใน Session ถัดไป
 
 ---
 
 <!-- _class: highlight -->
 
-## Workshop 3.1 — Population Statistics Pipeline
+## Workshop 5 — Population Statistics Pipeline
 
-### โจทย์: EDA ข้อมูลประชากร
- **Dataset:** ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
+### โจทย์: EDA ข้อมูลประชากร  **Dataset:** ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
+
+### เปิด Notebook สำหรับรันบน Colab   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-05-population-statistics-pipeline.ipynb)
+
 
 https://catalog.nso.go.th/api/3/action/datastore_search?resource_id=57ff7cd9-27e3-4dc5-b6ad-e8280ab18a05&limit=5000
 
@@ -410,11 +655,13 @@ https://raw.githubusercontent.com/toche7/DataSets/refs/heads/main/nso_population
 ```
 
 
+
+
 ---
 
 <!-- _class: highlight -->
 
-## Workshop 3.2 — Household Finance Analysis Pipeline
+## Homework — Household Finance Analysis Pipeline
 
 ### โจทย์: วิเคราะห์ฐานะทางการเงินครัวเรือนไทยจาก NSO Open Data
 
@@ -537,3 +784,30 @@ https://catalog.nso.go.th/api/3/action/datastore_search?resource_id=89cc71ae-f59
 # Q&A
 
 เตรียมต่อ Session 03: Data Visualization with Gemini
+
+---
+
+## วิทยากร
+
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
+*Asst. Prof. Taweesak Samanchuen, Ph.D.*
+
+- รองผู้อำนวยการฝ่ายดิจิทัลเทคโนโลยี **MULKC**
+- อาจารย์ประจำสาขา **ITM** คณะวิศวกรรมศาสตร์ มหาวิทยาลัยมหิดล
+- หัวหน้าโครงการ **CBTU** 
+
+🔗 [Profile](https://itm.eg.mahidol.ac.th/personnel/taweesak-samanchuen/)  
+📧 t.samanchuen@gmail.com
+☎ 081-441-4906
+
+websit: [cbtumu.net](https://cbtumu.net) | facebook: [cbtumu](https://www.facebook.com/CBTUMU/)
+
+
+---
+
+<!-- _class: lead -->
+
+# ขอบคุณครับ
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**

@@ -624,8 +624,6 @@ plt.show()
 
 
 ---
-
----
 <!-- _class: lead -->
 # 6. LLM for Data Extraction
 

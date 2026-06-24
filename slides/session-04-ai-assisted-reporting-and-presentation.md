@@ -10,11 +10,11 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 04"
 
 <style scoped>
 .logo-bar { position: absolute; top: 36px; right: 64px; display: flex; align-items: center; gap: 16px; }
-.logo-bar img { width: 100px; height: 100px; object-fit: contain; }
+.logo-bar img { width: 250px; height: 100px; object-fit: contain; }
 </style>
 
 <div class="logo-bar">
-  <img src="../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/DGA-TDGA.jpg" alt="Digital Government Development Agency (DGA)">
 </div>
 
 # Session 04
@@ -22,6 +22,9 @@ footer: "Generative AI for Data Analysis in the Public Sector | Session 04"
 # AI-Assisted Reporting and Presentation
 
 หลักสูตร: การใช้ Generative AI เพื่อการวิเคราะห์ข้อมูลสำหรับภาครัฐ
+
+Asst. Prof. Taweesak Samanchuen, Ph.D.
+Mahidol University
 
 ---
 
@@ -367,4 +370,29 @@ print(summary)
 
 # Q&A
 
-เตรียมต่อ Session 05: Mini Project และ Post-Test
+---
+
+## วิทยากร
+
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
+*Asst. Prof. Taweesak Samanchuen, Ph.D.*
+
+- รองผู้อำนวยการฝ่ายดิจิทัลเทคโนโลยี **MULKC**
+- อาจารย์ประจำสาขา **ITM** คณะวิศวกรรมศาสตร์ มหาวิทยาลัยมหิดล
+- หัวหน้าโครงการ **CBTU** 
+
+🔗 [Profile](https://itm.eg.mahidol.ac.th/personnel/taweesak-samanchuen/)  
+📧 t.samanchuen@gmail.com
+☎ 081-441-4906
+
+websit: [cbtumu.net](https://cbtumu.net) | facebook: [cbtumu](https://www.facebook.com/CBTUMU/)
+
+
+---
+
+<!-- _class: lead -->
+
+# ขอบคุณครับ
+
+**ผศ.ดร.ทวีศักดิ์ สมานชื่น**
