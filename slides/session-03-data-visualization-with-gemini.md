@@ -293,7 +293,20 @@ plt.show()
 3. Visualization Libraries: ใช้ `pandas`, `matplotlib`, `seaborn`
 
 ---
+## Example Dataset for Visualization
 
+| ฟิลด์ | ชนิด | ตัวอย่างค่า |
+|---|---|---|
+| `เดือน` | text | `"2026-01"` |
+| `จังหวัด` | text | `"กรุงเทพมหานคร"`, `"เชียงใหม่"` |
+| `จำนวนผู้รับบริการทั้งหมด(คน)` | numeric | 12345 |
+|`จำนวนผ่านช่องทางออนไลน์(คน)` | numeric | 2345 |
+| `เวลารอเฉลี่ย (นาที)` | numeric | 15.2 |
+| `ความพึงพอใจ(%)` | numeric | 85.5 |
+
+Link: [Raw CSV](https://raw.githubusercontent.com/toche7/DataSets/main/session-03-workshop-sample-data.csv)
+
+---
 ## 1) หลักการเลือกประเภทกราฟ
 
 ### คำถามก่อนเลือกกราฟ
@@ -335,14 +348,14 @@ plt.show()
 ## Scatter plot: ความสัมพันธ์ระหว่างตัวแปร
 
 <div class="center">
-  <img src="../fig/scatter.png" alt="scatter plot" width="600">  
+  <img src="../fig/scatter.png" alt="scatter plot" width="900">  
 </div>
 
 ---
 ## Heatmap: รูปแบบ/ความเข้มข้นในหลายมิติ
 
 <div class="center">
-  <img src="../fig/heatmap.png" alt="heatmap" width="600">  
+  <img src="../fig/heatmap.png" alt="heatmap" width="700">  
 </div>
 
 ---
@@ -496,8 +509,7 @@ plt.show()
 
 ```python
 # ดาวน์โหลดฟอนต์ TH Sarabun New
-!wget -q https://github.com/Phonbopit/sarabun-webfont/raw/master\
-/fonts/thsarabunnew-webfont.ttf
+!wget -q https://github.com/Phonbopit/sarabun-webfont/raw/master/fonts/thsarabunnew-webfont.ttf
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
