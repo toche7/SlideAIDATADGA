@@ -409,6 +409,18 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 # Data Preparation 
 ---
 
+## ชุดข้อมูลที่ใช้ในช่วงนี้ (Data Preparation + Workshop 3)
+
+- ชุดข้อมูล: [data.go.th - 0706_02_0011](https://data.go.th/dataset/0706_02_0011?id=585e5552-8ecf-445c-be16-a97140018169)
+- ตัวชี้วัดหลัก: อัตราการมีงานทำต่อประชากรวัยแรงงาน
+- หน่วยข้อมูล: ร้อยละ
+- มิติที่ใช้วิเคราะห์: ปี, ไตรมาส, ภาค, เขตเทศบาล/นอกเขต, ระดับการศึกษา
+- ตัวอย่างคอลัมน์ที่ใช้ใน workshop: `year`, `quarter`, `region`, `area`, `level_of_edu`, `value`
+
+> เป้าหมาย: เตรียมข้อมูลให้พร้อมสำหรับทำ EDA และสรุปข้อค้นพบเชิงนโยบาย
+
+---
+
 ## 1) การกำหนดโจทย์การวิเคราะห์ข้อมูล
 
 <div class="columns">
@@ -423,7 +435,7 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### ตัวอย่างคำถาม
 
-> ปัจจัยใดสัมพันธ์กับความล่าช้าในการให้บริการมากที่สุด?
+> อัตราการมีงานทำลดลงชัดเจนในกลุ่มการศึกษาใด และเกิดในช่วงเวลาใด?
 
 </div>
 <div class="center">
@@ -439,10 +451,10 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### Data Quality Checklist
 
-- Missing values และค่าผิดรูปแบบ: เช่น คอลัมน์อายุว่าง, วันที่บันทึกเป็นทั้ง `2026-01-05` และ `05/01/2026`
-- ความซ้ำซ้อนของรายการข้อมูล: เช่น เลขคำขอเดียวกันถูกบันทึกซ้ำ 2 แถว ทำให้ยอดนับสูงเกินจริง
-- ความสอดคล้องของหน่วยและรหัสข้อมูล: เช่น งบประมาณบางแถวเป็นบาท บางแถวเป็นพันบาท หรือรหัสจังหวัด `10` ปนกับ `BKK`
-- Outliers ที่ควรตรวจสอบเพิ่มเติม: เช่น เวลารอคิว 1,200 นาที อาจเป็นค่าพิมพ์ผิดหรือเหตุการณ์พิเศษที่ต้องแยกวิเคราะห์
+- Missing values และค่าผิดรูปแบบ: เช่น `value` ว่าง, `year` เป็นข้อความที่แปลงเป็นตัวเลขไม่ได้
+- ความซ้ำซ้อนของรายการข้อมูล: เช่น คีย์เดียวกัน (`year`+`quarter`+`region`+`area`+`level_of_edu`) ถูกบันทึกซ้ำ
+- ความสอดคล้องของหน่วยและหมวดหมู่: เช่น ค่า `area`/`region` สะกดไม่ตรงกัน หรือมีค่าไม่อยู่ในชุดหมวดที่คาดไว้
+- Outliers ที่ควรตรวจสอบเพิ่มเติม: เช่น ค่า `value` ต่ำกว่า 0 หรือสูงกว่า 100 (เกินขอบเขตร้อยละ)
 
 ---
 
@@ -450,9 +462,10 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### Data Preparation
 
-- แปลงชนิดข้อมูลให้เหมาะสม: เช่น แปลงคอลัมน์ `service_date` จากข้อความเป็นชนิดวันที่ และแปลง `waiting_time` เป็นตัวเลข
-- สร้างคอลัมน์ใหม่เพื่อการวิเคราะห์: เช่น คำนวณ `waiting_time_min` และสร้าง `is_weekend` เพื่อดูผลต่างวันทำการ/วันหยุด
-- จัดตารางให้อยู่ในรูปแบบ tidy data: เช่น แยกคอลัมน์ที่รวมหลายค่าให้เหลือ 1 ตัวแปรต่อ 1 คอลัมน์ และ 1 แถวต่อ 1 รายการบริการ
+- แปลงชนิดข้อมูลให้เหมาะสม: เช่น แปลง `year` และ `quarter` เป็นตัวเลข และ `value` เป็น numeric
+- คัดข้อมูลรวมออกก่อนวิเคราะห์เชิงกลุ่ม: เช่น ตัดแถว `area="รวม"` หรือ `level_of_edu="รวม"` เพื่อลดความเสี่ยงการนับซ้ำ
+- สร้างคอลัมน์ใหม่เพื่อการวิเคราะห์: เช่น สร้าง `period = year + "Q" + quarter` สำหรับกราฟแนวโน้ม
+- จัดตารางให้อยู่ในรูปแบบ tidy data: ให้ 1 แถว = 1 กลุ่มประชากรในช่วงเวลาเดียว และ 1 คอลัมน์ = 1 ตัวแปร
 
 ---
 
@@ -460,14 +473,16 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### missing values และค่าผิดรูปแบบ
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อตรวจสอบและจัดการกับ missing values ในคอลัมน์ `age` 
-และแปลงคอลัมน์ `service_date` ให้เป็นชนิดวันที่ในรูปแบบ YYYY-MM-DD พร้อมอธิบายโค้ดทีละบรรทัด
+ช่วยเขียนโค้ด Python ใน Colab เพื่อตรวจสอบ missing values ในคอลัมน์ `value`, `year`, `quarter`
+จากชุดข้อมูลอัตราการมีงานทำต่อประชากรวัยแรงงาน (0706_02_0011)
+และแปลงชนิดข้อมูลให้ `year`, `quarter`, `value` ใช้งานเชิงตัวเลขได้ พร้อมอธิบายโค้ดทีละบรรทัด
 ```
 
 
 ### ความซ้ำซ้อนของรายการข้อมูล
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อตรวจสอบและลบแถวที่มีเลขคำขอซ้ำกันในคอลัมน์ `request_id` พร้อมอธิบายโค้ดทีละบรรทัด"
+ช่วยเขียนโค้ด Python เพื่อตรวจสอบแถวซ้ำจากคีย์ `year`, `quarter`, `region`, `area`, `level_of_edu`
+และลบข้อมูลซ้ำโดยเก็บรายการแรก พร้อมอธิบายโค้ดทีละบรรทัด
 ```
 
 ---
@@ -485,19 +500,17 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 ---
 ## Workshop 3 — Data Preparation Pipeline
 
-### เปิด Notebook สำหรับรันบน Colab
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb)
+### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb)
 
 GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb
 
 ### กิจกรรมฝึกปฏิบัติ
 
-1. โหลด Titanic dataset (seaborn หรือ fallback CSV)
-2. ตรวจ missing values, duplicates, และ data types
-3. ทำความสะอาดข้อมูล (เติมค่า `age`, `embarked`, `fare`)
-4. ตรวจ outlier ของ `fare` และสร้าง tidy summary (`survival_rate`)
-5. export ไฟล์ผลลัพธ์สำหรับ EDA ต่อ
+1. ใช้ข้อมูลจาก https://data.go.th/dataset/0706_02_0011?id=585e5552-8ecf-445c-be16-a97140018169
+2. เลือกตารางย่อยที่ต้องการวิเคราะห์ (เช่น เพศ/อายุ/การศึกษา) และโหลดเข้า Colab
+3. ตรวจ missing values, duplicates, data types และความสอดคล้องของหมวดหมู่
+4. ทำความสะอาดข้อมูล: แปลงชนิดข้อมูล, ตัดค่ารวมที่ไม่ต้องการ, ตรวจค่า `value` ให้อยู่ในช่วง 0-100
+5. สร้างไฟล์ tidy ที่พร้อมทำ EDA ต่อ (เช่น `employment_rate_clean.csv`)
 
 
 
@@ -514,10 +527,10 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 
 ### สิ่งที่ต้องตอบให้ได้
 
-- ข้อมูลมีขนาดและโครงสร้างอย่างไร
-- แนวโน้มหลักของตัวแปรสำคัญเป็นอย่างไร
-- มีความสัมพันธ์เบื้องต้นระหว่างตัวแปรหรือไม่
-- มีความผิดปกติที่กระทบการตีความหรือไม่
+- ข้อมูลชุด 0706_02_0011 มีขนาดและโครงสร้างอย่างไร
+- แนวโน้ม `value` (อัตราการมีงานทำ) เปลี่ยนตาม `year` และ `quarter` อย่างไร
+- มีความแตกต่างของ `value` ระหว่าง `region` / `area` / `level_of_edu` หรือไม่
+- มีค่าผิดปกติหรือหมวดหมู่ที่กระทบการตีความผลหรือไม่
 
 ### เครื่องมือที่แนะนำใน Colab
 
@@ -530,15 +543,19 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 ### EDA เบื้องต้น
 
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อสรุปข้อมูลเบื้องต้น เช่น ขนาดข้อมูล, ค่ากลาง, การกระจายตัว และสร้างกราฟเชิงสำรวจ 
-เช่น histogram ของเวลารอคิว และ scatter plot ของเวลารอคิวเทียบกับอายุ พร้อมอธิบายโค้ดทีละบรรทัด"
+ช่วยเขียนโค้ด Python ใน Colab เพื่อทำ EDA ข้อมูลอัตราการมีงานทำ (0706_02_0011)
+โดยใช้คอลัมน์ year, quarter, region, area, level_of_edu, value
+ให้แสดงผลขนาดข้อมูล, info(), describe(), missing values และสร้าง histogram ของ value
+พร้อมอธิบายโค้ดทีละบรรทัด
 ```
 
 ### ความสัมพันธ์เบื้องต้น
 
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อสร้างกราฟ scatter plot แสดงความสัมพันธ์ระหว่างเวลารอคิวและอายุ 
-พร้อมคำนวณค่า correlation และอธิบายโค้ดทีละบรรทัด"
+ช่วยเขียนโค้ด Python เพื่อวิเคราะห์ความสัมพันธ์เบื้องต้นของข้อมูลอัตราการมีงานทำ
+โดยคำนวณค่าเฉลี่ย value แยกตาม level_of_edu และแยกตาม region
+จากนั้นสร้างกราฟเปรียบเทียบ (barplot) และอธิบายว่ากลุ่มใดมีค่าเฉลี่ยสูง/ต่ำ
+พร้อมอธิบายโค้ดทีละบรรทัด
 ```
 
 
@@ -552,9 +569,9 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-ed
 
 ### กิจกรรมฝึกปฏิบัติ
 
-1. ใช้ Titanic dataset ที่ผ่าน Data Preparation แล้ว
+1. เริ่มจากไฟล์ที่ผ่านการทำความสะอาดจาก Workshop 3: `workshop3_employment_rate_clean.csv`
 2. กำหนดคำถามการวิเคราะห์ 2-3 ข้อ
-3. ทำ Data Quality Check และปรับข้อมูล
+3. โหลด `workshop3_employment_rate_clean.csv` เข้า Colab แล้วทำ Data Quality Check ซ้ำแบบย่อเพื่อยืนยันคุณภาพข้อมูล
 4. ทำ EDA และสรุปข้อค้นพบเบื้องต้น
 
 
