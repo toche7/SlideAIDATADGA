@@ -55,10 +55,8 @@ Mahidol University
 
 ---
 ## 1) Recall 
-
-- AI and ML
+- AI and Data Analysis
 - Colab with AI 
-- Basic Python for Data Analysis
 - Data Preprocessing
 - EDA 
 
@@ -102,7 +100,7 @@ plt.show()
 ---
 ## Univariate Analysis: Histogram
 <div class="center">
-<img src="../fig/histogram.png" alt="histogram" width="800">
+<img src="../fig/numberPassenger.png" alt="histogram" width="600">
 </div>
 
 ---
@@ -305,6 +303,13 @@ plt.show()
 | `ความพึงพอใจ(%)` | numeric | 85.5 |
 
 Link: [Raw CSV](https://raw.githubusercontent.com/toche7/DataSets/main/session-03-workshop-sample-data.csv)
+
+---
+## Example Dataset for Visualization
+
+<div class="center">
+  <img src="../fig/sampleDataSatisfaction.png" alt="bar chart" width="1000">
+</div>
 
 ---
 ## 1) หลักการเลือกประเภทกราฟ
