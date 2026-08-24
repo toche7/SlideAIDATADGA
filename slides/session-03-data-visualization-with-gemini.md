@@ -439,19 +439,29 @@ Link: [Raw CSV](https://raw.githubusercontent.com/toche7/DataSets/main/session-0
 ---
 ## Scatter plot: ความสัมพันธ์ระหว่างตัวแปร
 
+
 <div class="center">
-  <img src="../fig/scatter.png" alt="scatter plot" width="900">  
+  <img src="../fig/scatter_.png" alt="scatter plot" width="500">  
 </div>
 
 
+### Prompt ที่แนะนำ
+```prompt
+ขอกราฟ scatter plot แสดงความสัมพันธ์ระหว่าง 
+เวลารอเฉลี่ยกับความพึงพอใจ พร้อมเส้น regression line
+``` 
 
 ---
 ## Heatmap: รูปแบบ/ความเข้มข้นในหลายมิติ
 
 <div class="center">
-  <img src="../fig/heatmap.png" alt="heatmap" width="700">  
+  <img src="../fig/heatmap_.png" alt="heatmap" width="500">  
 </div>
 
+### Prompt ที่แนะนำ
+```prompt
+ขอ Correlation heatmap แสดงความสัมพันธ์ระหว่างตัวแปร
+```
 ---
 
 ## ตัวอย่าง: คำถามแบบไหน ใช้กราฟอะไร
