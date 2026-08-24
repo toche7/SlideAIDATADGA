@@ -33,7 +33,7 @@ Mahidol University
 เมื่อจบช่วงนี้ ผู้เข้าอบรมสามารถ:
 
 1. เลือกประเภทกราฟให้เหมาะกับชนิดข้อมูลและเป้าหมาย
-2. ใช้ Gemini in Colab ช่วยออกแบบและสร้างกราฟได้รวดเร็วขึ้น
+2. ใช้ Gemini ช่วยออกแบบและสร้างกราฟได้รวดเร็วขึ้น
 3. อธิบายความสัมพันธ์ของตัวแปรด้วย correlation และ regression เบื้องต้น
 4. ตีความผลจากกราฟอย่างถูกต้องและชัดเจน
 5. สื่อสารข้อมูลให้ผู้บริหารและผู้เกี่ยวข้องเข้าใจได้ง่าย
@@ -64,6 +64,36 @@ Mahidol University
 ---
 <!-- _class: lead -->
 # 2. Univariate และ Bivariate Analysis
+
+---
+## ข้อมูล Fuel Cost และ Passenger
+
+<div class="columns">
+<div>
+
+Dataset: [Fuel Cost.xlsx](https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx)
+
+|Time	| Passenger|	Fuel Cost |
+|---|---|---|
+|12/1/2022|	61|	4.28 |
+|12/2/2022|	97|	5.56 |
+|12/3/2022|	76|	4.82 |
+|12/4/2022|	69|	4.17 |
+|12/5/2022|	91|	5.13 |
+|12/6/2022|	74|	4.3 |
+|12/7/2022|	67|	4.42 |
+
+
+</div>
+<div>
+
+Time: วันที่ (วัน/เดือน/ปี)
+Passenger: จำนวนผู้โดยสาร (คน)
+Fuel Cost: ค่าใช้จ่ายเชื้อเพลิง (1000 USD)
+
+  <img src="../fig/correlation.png" alt="bar correlation" width="450">
+</div>
+</div>
 
 ---
 ## Univariate Analysis
@@ -99,8 +129,24 @@ plt.show()
 
 ---
 ## Univariate Analysis: Histogram
+
+<div class="columns">
+
 <div class="center">
 <img src="../fig/numberPassenger.png" alt="histogram" width="600">
+</div>
+<div>
+
+- Histogram แสดงการกระจายของข้อมูลเป็นช่วง (bins)
+  
+
+### Prompt ที่แนะนำ
+```prompt
+สร้าง histogram พร้อมเส้น kde ของจำนวน
+ผู้โดยสาร(Passenger)จากไฟล์ cost.xlsx  
+```
+
+</div>
 </div>
 
 ---
@@ -108,9 +154,16 @@ plt.show()
 
 <div class="columns">
 <div>
+
 - Boxplot แสดงค่ากลาง (median), quartiles, และ outliers ของข้อมูล
 - ช่วยให้เห็นการกระจายและความไม่สมมาตรของข้อมูล
 
+### Prompt ที่แนะนำ
+```prompt
+สร้าง boxplot ของจำนวนผู้โดยสาร(Passenger)จากไฟล์ cost.xlsx
+```
+
+### Python code ตัวอย่าง
 ```python
 sns.boxplot(data=df, x="Passenger")
 plt.title("Boxplot of Passenger")
@@ -149,13 +202,19 @@ plt.show()
 sns.scatterplot(data=df, x="Passenger", y="Fuel Cost")
 plt.title("Passenger vs Fuel Cost")
 plt.show()
-
 # Correlation matrix
 print(df[["Passenger", "Fuel Cost"]].corr())
+```
+### Prompt ที่แนะนำ
+```prompt
+สร้าง scatter plot ของ Passenger กับ Fuel Cost 
+จากไฟล์ cost.xlsx 
 ```
 </div>
 <div>
   <img src="../fig/correlation.png" alt="bar correlation" width="450">
+
+
 </div>
 </div>
 
@@ -204,8 +263,18 @@ $$
 <img src="../fig/threecorrelation.png" alt="bar correlation" width="1150">
 
 ---
-## ตัวอย่างการคำนวณ Correlation ด้วย Python
+## ตัวอย่างการคำนวณ Correlation ด้วย Prompt
 
+### ตัวอย่าง Prompt
+
+```prompt
+ใช้ไฟล์ cost.xlsx จาก GitHub นี้
+1) โหลดข้อมูลด้วย pandas
+2) คำนวณ correlation ระหว่าง Passenger กับ Fuel Cost
+```
+
+
+### ตัวอย่างการคำนวณ Correlation ด้วย Python
 ```python
 import pandas as pd
 url = "https://github.com/toche7/DataSets/raw/refs/heads/main/cost.xlsx"
@@ -286,7 +355,7 @@ plt.show()
 
 ## แพลตฟอร์มที่ใช้ในชั้นเรียน
 
-1. Gemini in Colab: ช่วยคิด วิเคราะห์ และเขียนโค้ดในโน้ตบุ๊กเดียว
+1. Gemini: ช่วยคิด วิเคราะห์ และเขียนโค้ดในโน้ตบุ๊กเดียว
 2. GitHub Raw CSV: ใช้เป็นแหล่งข้อมูลกลางให้ทุกคนโหลดข้อมูลชุดเดียวกัน
 3. Visualization Libraries: ใช้ `pandas`, `matplotlib`, `seaborn`
 
@@ -331,21 +400,39 @@ Link: [Raw CSV](https://raw.githubusercontent.com/toche7/DataSets/main/session-0
 ## Bar chart: เปรียบเทียบค่าระหว่างกลุ่ม
 
 <div class="center">
-  <img src="../fig/bar.png" alt="bar chart" width="800">
+  <img src="../fig/bar.png" alt="bar chart" width="600">
 </div>
 
+### Prompt ที่แนะนำ
+```prompt
+ขอกราฟแท่งระหว่างจังหวัดและ ค่าเฉลี่ยเวลารอ
+```
 ---
 ## Line chart: แนวโน้มตามเวลา
 
 <div class="center">
-  <img src="../fig/line.png" alt="line chart" width="800">
+  <img src="../fig/line_.png" alt="line chart" width="600">
 </div>
+
+### Prompt ที่แนะนำ
+```prompt
+ขอกราฟเส้นจำนวนผู้รับบริการในแต่ละเดือน
+```
 
 ---
 ## Pie chart: แสดงสัดส่วนของแต่ละกลุ่มในภาพรวม
 
+<div class="columns">
 <div class="center">
-  <img src="../fig/pie.png" alt="pie chart" width="600">  
+  <img src="../fig/pie_.png" alt="pie chart" width="600">  
+</div>
+<div>
+
+### Prompt ที่แนะนำ
+```prompt
+ขอกราฟวงกลมแสดงสัดส่วนผู้รับบริการในแต่ละจังหวัด
+```
+</div>
 </div>
 
 
@@ -355,6 +442,8 @@ Link: [Raw CSV](https://raw.githubusercontent.com/toche7/DataSets/main/session-0
 <div class="center">
   <img src="../fig/scatter.png" alt="scatter plot" width="900">  
 </div>
+
+
 
 ---
 ## Heatmap: รูปแบบ/ความเข้มข้นในหลายมิติ

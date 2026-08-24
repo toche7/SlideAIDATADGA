@@ -118,6 +118,18 @@ em {
   font-weight: 600;
 }
 
+a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--color-accent2);
+}
+
 /* ─── Tables ────────────────────────────────────── */
 table {
   border-collapse: collapse;
