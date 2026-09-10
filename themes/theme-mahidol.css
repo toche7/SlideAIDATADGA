@@ -216,6 +216,46 @@ pre code.language-promt {
   align-items: start;
 }
 
+/* Reusable analysis workflow component */
+.analysis-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.analysis-step {
+  flex: 1;
+  min-height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 12px 10px;
+  border: 2px solid var(--color-accent);
+  border-radius: 8px;
+  background: var(--color-highlight);
+  color: var(--color-heading);
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 1.25;
+}
+
+.analysis-step small {
+  display: block;
+  margin-top: 6px;
+  color: var(--color-heading);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.analysis-arrow {
+  align-self: center;
+  color: var(--color-accent);
+  font-size: 30px;
+  font-weight: 700;
+}
+
 .center {
   text-align: center;
 }

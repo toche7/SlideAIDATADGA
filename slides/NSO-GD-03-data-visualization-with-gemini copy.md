@@ -1,29 +1,32 @@
 ---
 marp: true
-theme: mahidol
+theme: mahidol-green
 paginate: true
 size: 16:9
-footer: "Generative AI for Data Analysis in the Public Sector | Session 03"
+footer: "Stat on Campus | Session 03"
+
 ---
 
 <!-- _class: lead -->
 
 <style scoped>
 .logo-bar { position: absolute; top: 36px; right: 64px; display: flex; align-items: center; gap: 16px; }
-.logo-bar img { width: 250px; height: 100px; object-fit: contain; }
+.logo-bar img { width: 100px; height: 100px; object-fit: contain; }
 </style>
 
 <div class="logo-bar">
-  <img src="../fig/logos/DGA-TDGA.jpg" alt="Digital Government Development Agency (DGA)">
+  <img src="../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/nso.png" alt="NSO">
 </div>
 
 # Session 03
 
 # Data Visualization with Gemini
 
-หลักสูตร: การใช้ Generative AI เพื่อการวิเคราะห์ข้อมูลสำหรับภาครัฐ
 
-Asst. Prof. Taweesak Samanchuen, Ph.D.
+<div class="subtitle">Data to Insight with AI Tools</div>
+
+Taweesak Samanchuen, Ph.D.
 Mahidol University
 
 ---
