@@ -3,26 +3,27 @@ marp: true
 theme: mahidol
 paginate: true
 size: 16:9
-footer: "Generative AI for Data Analysis in the Public Sector | Session 01"
+footer: "Stat on Campus | Session 01 | Generative AI for Data Work"
 math: katex
-
 ---
+
 <!-- _class: lead -->
 
 <style scoped>
 .logo-bar { position: absolute; top: 36px; right: 64px; display: flex; align-items: center; gap: 16px; }
-.logo-bar img { width: 250px; height: 100px; object-fit: contain; }
+.logo-bar img { width: 100px; height: 100px; object-fit: contain; }
 </style>
 
 <div class="logo-bar">
-  <img src="../fig/logos/DGA-TDGA.jpg" alt="Digital Government Development Agency (DGA)">
+  <img src="../fig/logos/mahidol.svg" alt="Mahidol University">
+  <img src="../fig/logos/cbtu1.png" alt="CBTU">
 </div>
 
 # Session 01
 # Generative AI for Data Work
 
+<div class="subtitle">Data Analysis with AI</div>
 
-หลักสูตร: การใช้ Generative AI เพื่อการวิเคราะห์ข้อมูลสำหรับภาครัฐ
 
 Asst. Prof. Taweesak Samanchuen, Ph.D.
 Mahidol University
@@ -114,83 +115,121 @@ AI ที่ **สร้างสิ่งใหม่** ได้ — ข้อ
 
 ### เปรียบเทียบแบบง่าย
 
+
+
 - **Generative AI**: คำรวมของระบบที่สร้าง content ใหม่
 - **LLM**: โมเดลที่สร้างและประมวลผล "ภาษา" เป็นหลัก
+
 
 > สรุปสั้น: ทุก LLM เป็น Generative AI แต่ไม่ใช่ทุก Generative AI จะเป็น LLM
 
 
+
 ---
+
 ## Modern Chat AI
 
+
+
 ![w:1100px](../fig/modernchatai.png)
+
+
 
 ---
 
 ## Token คืออะไร?
 
+
 > **Token** = หน่วยเล็กที่สุดที่ AI ใช้ "อ่าน" และ "เขียน" ข้อความ — ไม่ใช่คำ แต่เป็นชิ้นส่วนของคำ
 
+
 <div class="columns">
+
 <div>
+
 
 ### ตัวอย่าง (ภาษาอังกฤษ)
 - "Hello" = 1 token
 - "unbelievable" = 3 tokens
+
 - 1 คำ ≈ 0.75 token โดยเฉลี่ย
+
 
 </div>
 <div>
+
 
 ### ตัวอย่าง (ภาษาไทย)
 - ภาษาไทยใช้ token มากกว่า EN ~2-3x
 - "สวัสดี" ≈ 3-5 tokens
 
-</div>
+
+
 </div>
 
+</div>
+
+
 ---
+
 
 ## Token คืออะไร? (ต่อ)
 
 ### ทำไมต้องรู้?
+
 - **Context Window** วัดเป็น token
+
 - ยิ่ง Prompt ยาว → ใช้ token มาก → เหลือพื้นที่คำตอบน้อยลง
 - บริการ API คิดเงินตาม token
   
 
 > สำหรับคนทำงานทั่วไป: จำง่ายๆ ว่า <strong>1,000 token ≈ ข้อความ ¾ หน้า A4</strong>
 
-สามารถทดสอบนับ token ได้ที่: [tiktokenizer.vercel.app](https://tiktokenizer.vercel.app)
 
 
 ---
 
 ## Context Window คืออะไร?
 
+
+
 > **Context Window** = "ความจำระยะสั้น" ของ AI — ข้อมูลทั้งหมดที่ AI มองเห็นในการสนทนาครั้งนั้น
+
 <div class="columns">
+
 <div>
+
+
 
 ### ใส่ได้ทั้ง
 - ข้อความบทสนทนาทั้งหมด
 - เอกสารที่แนบ / วางข้อความ
 - คำสั่งระบบ (System Prompt)
 
+
+
 </div>
+
 <div>
 
 ### Gemini 2.0 รองรับ
 - **1 ล้าน token** (~750,000 คำ)
 - ≈ หนังสือ 10 เล่ม หรือโค้ด 30,000 บรรทัด
+
 - เกิน limit → AI "ลืม" ส่วนต้น
 
 </div>
+
 </div>
+
+
 
 <div class="tip">
 💡 ถ้าสนทนายาวมากแล้ว AI เริ่มตอบผิดพลาด — ลองเปิด chat ใหม่และสรุป context ก่อน
+
 </div>
+
+
 
 
 
@@ -198,13 +237,18 @@ AI ที่ **สร้างสิ่งใหม่** ได้ — ข้อ
 
 ---
 
+
+
 ## LLM ช่วยงานข้อมูลอะไรได้บ้าง
 
 ### ใน workflow จริง
 
+
 - แปลงคำถามธุรกิจเป็น **SQL**
 - ช่วยอ่านผล **EDA** และตั้ง hypothesis
+
 - ดึงข้อมูลจากข้อความด้วย **extraction**
+
 - ตรวจความผิดปกติและช่วย reasoning เบื้องต้น
 - สรุปผลเชิงเทคนิคให้เป็นภาษาที่สื่อสารกับทีมได้
 
@@ -525,12 +569,13 @@ AI ที่ **สร้างสิ่งใหม่** ได้ — ข้อ
 - Prompt CO-STAR: *"[C] ฉันเป็นเจ้าหน้าที่ธุรการ [O] เขียนอีเมลขอเลื่อนนัดประชุมกับลูกค้า [S] ทางการ [T] สุภาพ ขอโทษอย่างจริงใจ [A] ลูกค้าระดับผู้บริหาร [R] อีเมล 1 ย่อหน้า"*
 
 
+
 ---
 
 <!-- _class: divider -->
 
 ## 03
-## Data Analysis with Gemini
+## Basic Data Analysis with AI
 
 
 ---
@@ -858,8 +903,6 @@ projects = pd.DataFrame({
 - ไม่ให้ AI เพิ่มสาเหตุของความล่าช้าหากไม่มีข้อมูลรองรับ
 
 > **งานรายงานโครงการ: โปรแกรมคำนวณสถานะ แล้ว AI ช่วยเรียบเรียงให้สื่อสารกับผู้บริหาร**
-
-
 
 ---
 
