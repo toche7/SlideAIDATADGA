@@ -50,7 +50,6 @@ Mahidol University
 5. Workshop Pipeline Series
    - Workshop 2: Titanic Quick Start
    - Workshop 3: Data Preparation Pipeline
-   - Workshop 4: EDA Pipeline
    - Workshop 5: Population Statistics (NSO)
    - Workshop 6: Household Finance (NSO)
 
@@ -83,6 +82,7 @@ Mahidol University
 
 </div>
 <div class="center">
+---
 
 <img src="../fig/Google-Colab.jpg" alt="Gemini in Colab interface" width="500" class="img-edge">
 
@@ -141,6 +141,7 @@ Mahidol University
 ## ภาพรวมหน้าจอ Gemini in Colab
 
 <div class="columns">
+
 <div>
 
 ### จุดที่ผู้เรียนควรรู้ก่อนเริ่ม
@@ -157,6 +158,7 @@ Mahidol University
 
 </div>
 </div>
+
 
 
 
@@ -411,11 +413,11 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ## ชุดข้อมูลที่ใช้ในช่วงนี้ (Data Preparation + Workshop 3)
 
-- ชุดข้อมูล: [data.go.th - 0706_02_0011](https://data.go.th/dataset/0706_02_0011?id=585e5552-8ecf-445c-be16-a97140018169)
-- ตัวชี้วัดหลัก: อัตราการมีงานทำต่อประชากรวัยแรงงาน
-- หน่วยข้อมูล: ร้อยละ
-- มิติที่ใช้วิเคราะห์: ปี, ไตรมาส, ภาค, เขตเทศบาล/นอกเขต, ระดับการศึกษา
-- ตัวอย่างคอลัมน์ที่ใช้ใน workshop: `year`, `quarter`, `region`, `area`, `level_of_edu`, `value`
+- ชุดข้อมูล: [data.go.th - traffic-accident](https://data.go.th/dataset/traffic-accident)
+- ชื่อข้อมูล: ข้อมูลการตรวจสถานที่เกิดเหตุในคดีอุบัติเหตุจราจร
+- หน่วยข้อมูล: รายการตรวจสถานที่เกิดเหตุแต่ละรายการ
+- มิติที่ใช้วิเคราะห์: จังหวัด, สถานีตำรวจ, วันและเวลา, สภาพถนน, สัญญาณไฟจราจร และพิกัดสถานที่เกิดเหตุ
+- ตัวอย่างคอลัมน์ที่ใช้ใน workshop: จังหวัด, สถานีตำรวจ, วันในสัปดาห์, สภาพถนน, สัญญาณไฟจราจร, ละติจูด, ลองจิจูด
 
 > เป้าหมาย: เตรียมข้อมูลให้พร้อมสำหรับทำ EDA และสรุปข้อค้นพบเชิงนโยบาย
 
@@ -435,7 +437,7 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### ตัวอย่างคำถาม
 
-> อัตราการมีงานทำลดลงชัดเจนในกลุ่มการศึกษาใด และเกิดในช่วงเวลาใด?
+> ข้อมูลอุบัติเหตุจราจรกระจุกตัวในจังหวัดหรือสภาพถนนแบบใด และมีข้อมูลพิกัดพร้อมใช้วิเคราะห์มากน้อยเพียงใด?
 
 </div>
 <div class="center">
@@ -451,10 +453,10 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### Data Quality Checklist
 
-- Missing values และค่าผิดรูปแบบ: เช่น `value` ว่าง, `year` เป็นข้อความที่แปลงเป็นตัวเลขไม่ได้
-- ความซ้ำซ้อนของรายการข้อมูล: เช่น คีย์เดียวกัน (`year`+`quarter`+`region`+`area`+`level_of_edu`) ถูกบันทึกซ้ำ
-- ความสอดคล้องของหน่วยและหมวดหมู่: เช่น ค่า `area`/`region` สะกดไม่ตรงกัน หรือมีค่าไม่อยู่ในชุดหมวดที่คาดไว้
-- Outliers ที่ควรตรวจสอบเพิ่มเติม: เช่น ค่า `value` ต่ำกว่า 0 หรือสูงกว่า 100 (เกินขอบเขตร้อยละ)
+- Missing values และค่าผิดรูปแบบ: เช่น จังหวัดหรือวันเวลาเกิดเหตุว่าง และค่าพิกัดแปลงเป็นตัวเลขไม่ได้
+- ความซ้ำซ้อนของรายการข้อมูล: ตรวจสอบ `_id` หรือรายการที่มีรายละเอียดเหตุการณ์และพิกัดซ้ำกัน
+- ความสอดคล้องของหน่วยและหมวดหมู่: เช่น ชื่อจังหวัด สภาพถนน หรือสัญญาณไฟสะกดไม่ตรงกัน
+- ค่าผิดปกติที่ควรตรวจสอบเพิ่มเติม: เช่น ละติจูดอยู่นอกช่วง -90 ถึง 90 หรือลองจิจูดอยู่นอกช่วง -180 ถึง 180
 
 ---
 
@@ -462,10 +464,11 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### Data Preparation
 
-- แปลงชนิดข้อมูลให้เหมาะสม: เช่น แปลง `year` และ `quarter` เป็นตัวเลข และ `value` เป็น numeric
-- คัดข้อมูลรวมออกก่อนวิเคราะห์เชิงกลุ่ม: เช่น ตัดแถว `area="รวม"` หรือ `level_of_edu="รวม"` เพื่อลดความเสี่ยงการนับซ้ำ
-- สร้างคอลัมน์ใหม่เพื่อการวิเคราะห์: เช่น สร้าง `period = year + "Q" + quarter` สำหรับกราฟแนวโน้ม
-- จัดตารางให้อยู่ในรูปแบบ tidy data: ให้ 1 แถว = 1 กลุ่มประชากรในช่วงเวลาเดียว และ 1 คอลัมน์ = 1 ตัวแปร
+- แปลงชนิดข้อมูลให้เหมาะสม: เช่น แปลงวันเวลา ละติจูด และลองจิจูดเป็นชนิดข้อมูลที่ใช้งานได้
+- ลบรายการซ้ำโดยใช้ `_id` หรือคีย์ที่เหมาะสมกับรายละเอียดเหตุการณ์
+- ทำมาตรฐานค่าหมวดหมู่: ตัดช่องว่างและรวมรูปแบบการเขียนจังหวัด สภาพถนน และสัญญาณไฟ
+- ตรวจและจัดการพิกัดที่อยู่นอกช่วง รวมถึงแยกแถวที่ไม่มีพิกัดไว้พิจารณาต่างหาก
+- จัดตารางให้อยู่ในรูปแบบ tidy data: ให้ 1 แถว = 1 รายการตรวจสถานที่เกิดเหตุ และ 1 คอลัมน์ = 1 ตัวแปร
 
 ---
 
@@ -473,16 +476,18 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 
 ### missing values และค่าผิดรูปแบบ
 ```prompt
-ช่วยเขียนโค้ด Python ใน Colab เพื่อตรวจสอบ missing values ในคอลัมน์ `value`, `year`, `quarter`
-จากชุดข้อมูลอัตราการมีงานทำต่อประชากรวัยแรงงาน (0706_02_0011)
-และแปลงชนิดข้อมูลให้ `year`, `quarter`, `value` ใช้งานเชิงตัวเลขได้ พร้อมอธิบายโค้ดทีละบรรทัด
+ช่วยเขียนโค้ด Python ใน Colab เพื่อตรวจสอบ missing values และชนิดข้อมูล
+ของชุดข้อมูลการตรวจสถานที่เกิดเหตุในคดีอุบัติเหตุจราจรจาก data.go.th
+โดยเน้นคอลัมน์จังหวัด วันเวลาเกิดเหตุ ละติจูด และลองจิจูด
+พร้อมแปลงคอลัมน์วันเวลาและพิกัดให้ใช้งานได้ และอธิบายโค้ดทีละบรรทัด
 ```
 
 
 ### ความซ้ำซ้อนของรายการข้อมูล
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อตรวจสอบแถวซ้ำจากคีย์ `year`, `quarter`, `region`, `area`, `level_of_edu`
-และลบข้อมูลซ้ำโดยเก็บรายการแรก พร้อมอธิบายโค้ดทีละบรรทัด
+ช่วยเขียนโค้ด Python เพื่อตรวจสอบรายการซ้ำในชุดข้อมูลอุบัติเหตุจราจร
+โดยตรวจ `_id` และรายละเอียดจังหวัด สถานีตำรวจ วันเวลาเกิดเหตุ และพิกัด
+จากนั้นลบข้อมูลซ้ำโดยเก็บรายการแรก พร้อมอธิบายโค้ดทีละบรรทัด
 ```
 
 ---
@@ -500,17 +505,17 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-02-pr
 ---
 ## Workshop 3 — Data Preparation Pipeline
 
-### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb)
+### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/Workshop3v1.ipynb)
 
-GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-data-preparation-pipeline.ipynb
+GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/Workshop3v1.ipynb
 
 ### กิจกรรมฝึกปฏิบัติ
 
-1. ใช้ข้อมูลจาก https://data.go.th/dataset/0706_02_0011?id=585e5552-8ecf-445c-be16-a97140018169
-2. เลือกตารางย่อยที่ต้องการวิเคราะห์ (เช่น เพศ/อายุ/การศึกษา) และโหลดเข้า Colab
-3. ตรวจ missing values, duplicates, data types และความสอดคล้องของหมวดหมู่
-4. ทำความสะอาดข้อมูล: แปลงชนิดข้อมูล, ตัดค่ารวมที่ไม่ต้องการ, ตรวจค่า `value` ให้อยู่ในช่วง 0-100
-5. สร้างไฟล์ tidy ที่พร้อมทำ EDA ต่อ (เช่น `employment_rate_clean.csv`)
+1. ใช้ข้อมูลจาก https://data.go.th/dataset/traffic-accident และโหลด resource เข้า Colab
+2. ตรวจ missing values, duplicates, data types และความสอดคล้องของหมวดหมู่
+3. ทำความสะอาดข้อมูล: แปลงวันเวลาและพิกัด ลบรายการซ้ำ และจัดมาตรฐานค่าหมวดหมู่
+4. ตรวจพิกัดให้ละติจูดอยู่ในช่วง -90 ถึง 90 และลองจิจูดอยู่ในช่วง -180 ถึง 180
+5. สร้างไฟล์ tidy ที่พร้อมทำ EDA ต่อ (เช่น `workshop3_traffic_accident_clean.csv`)
 
 
 
@@ -525,11 +530,27 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 
 ## Exploratory Data Analysis (EDA)
 
+### ข้อมูลที่ใช้ใน Workshop 5: NSO Population Dataset
+
+
+
+| ฟิลด์ | ชนิด | ตัวอย่างค่า | ความหมาย |
+|---|---|---|---|
+| `year` | numeric | `2533`, `2543`, `2553` | ปีพุทธศักราช |
+| `region` | text | `ทั่วประเทศ`, `กลาง` | ภาค |
+| `province` | text | `รวม`, `กรุงเทพมหานคร` | จังหวัด |
+| `area` | text | `รวม`, `ในเขตเทศบาล` | ประเภทพื้นที่ |
+| `sex` | text | `รวม`, `ชาย`, `หญิง` | เพศ |
+| `age_group` | text | `รวม`, `0-4` | กลุ่มอายุ |
+| `value` | numeric | `54548530` | จำนวนประชากร (คน) |
+
+> **Total records: 38,720** | **ปีข้อมูล:** พ.ศ. 2533–ปัจจุบัน
+
 ### สิ่งที่ต้องตอบให้ได้
 
-- ข้อมูลชุด 0706_02_0011 มีขนาดและโครงสร้างอย่างไร
-- แนวโน้ม `value` (อัตราการมีงานทำ) เปลี่ยนตาม `year` และ `quarter` อย่างไร
-- มีความแตกต่างของ `value` ระหว่าง `region` / `area` / `level_of_edu` หรือไม่
+- ข้อมูลประชากรจาก NSO มีขนาดและโครงสร้างอย่างไร
+- จำนวนประชากร (`value`) เปลี่ยนแปลงตาม `year` และแตกต่างกันระหว่าง `region` หรือไม่
+- มีความแตกต่างของจำนวนประชากรระหว่าง `sex`, `age_group`, `province` และ `area` หรือไม่
 - มีค่าผิดปกติหรือหมวดหมู่ที่กระทบการตีความผลหรือไม่
 
 ### เครื่องมือที่แนะนำใน Colab
@@ -543,8 +564,8 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 ### EDA เบื้องต้น
 
 ```prompt
-ช่วยเขียนโค้ด Python ใน Colab เพื่อทำ EDA ข้อมูลอัตราการมีงานทำ (0706_02_0011)
-โดยใช้คอลัมน์ year, quarter, region, area, level_of_edu, value
+ช่วยเขียนโค้ด Python ใน Colab เพื่อทำ EDA ข้อมูลประชากรจากสำนักงานสถิติแห่งชาติ (NSO)
+โดยใช้คอลัมน์ year, region, province, area, sex, age_group และ value
 ให้แสดงผลขนาดข้อมูล, info(), describe(), missing values และสร้าง histogram ของ value
 พร้อมอธิบายโค้ดทีละบรรทัด
 ```
@@ -552,28 +573,11 @@ GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-03-da
 ### ความสัมพันธ์เบื้องต้น
 
 ```prompt
-ช่วยเขียนโค้ด Python เพื่อวิเคราะห์ความสัมพันธ์เบื้องต้นของข้อมูลอัตราการมีงานทำ
-โดยคำนวณค่าเฉลี่ย value แยกตาม level_of_edu และแยกตาม region
-จากนั้นสร้างกราฟเปรียบเทียบ (barplot) และอธิบายว่ากลุ่มใดมีค่าเฉลี่ยสูง/ต่ำ
+ช่วยเขียนโค้ด Python เพื่อวิเคราะห์ความสัมพันธ์เบื้องต้นของข้อมูลประชากรจาก NSO
+โดยคำนวณผลรวม value แยกตาม sex และ age_group และเปรียบเทียบระหว่าง region หรือ province
+จากนั้นสร้างกราฟเปรียบเทียบ (barplot) และอธิบายว่ากลุ่มใดมีจำนวนประชากรสูง/ต่ำ
 พร้อมอธิบายโค้ดทีละบรรทัด
 ```
-
-
----
-
-## Workshop 4 — EDA Pipeline
-
-### เปิด Notebook สำหรับรันบน Colab [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb)
-
-GitHub: https://github.com/toche7/SlideAIDATADGA/blob/main/slides/workshop-04-eda-pipeline.ipynb
-
-### กิจกรรมฝึกปฏิบัติ
-
-1. เริ่มจากไฟล์ที่ผ่านการทำความสะอาดจาก Workshop 3: `workshop3_employment_rate_clean.csv`
-2. กำหนดคำถามการวิเคราะห์ 2-3 ข้อ
-3. โหลด `workshop3_employment_rate_clean.csv` เข้า Colab แล้วทำ Data Quality Check ซ้ำแบบย่อเพื่อยืนยันคุณภาพข้อมูล
-4. ทำ EDA และสรุปข้อค้นพบเบื้องต้น
-
 
 ---
 
@@ -595,23 +599,6 @@ https://catalog.nso.go.th/api/3/action/datastore_search?resource_id=57ff7cd9-27e
 4. ทำ EDA เบื้องต้น เช่น การกระจายตัวของประชากรตามเพศและอายุ
 5. วิเคราะห์ตามคำถามที่กำหนดและสรุป Insight ที่ได้จากข้อมูล
 
-
----
-
-## โครงสร้างข้อมูล NSO Dataset
-
-
-| ฟิลด์ | ชนิด | ตัวอย่างค่า | ความหมาย |
-|---|---|---|---|
-| `year` | numeric | `2533`, `2543`, `2553` | ปีพุทธศักราช |
-| `region` | text | `ทั่วประเทศ`, `กลาง` | ภาค |
-| `province` | text | `รวม`, `กรุงเทพมหานคร` | จังหวัด |
-| `area` | text | `รวม`, `ในเขตเทศบาล` | ประเภทพื้นที่ |
-| `sex` | text | `รวม`, `ชาย`, `หญิง` | เพศ |
-| `age_group` | text | `รวม`, `0-4` | กลุ่มอายุ |
-| `value` | numeric | `54548530` | จำนวนประชากร (คน) |
-
-> **Total records: 38,720** | **ปีข้อมูล:** พ.ศ. 2533–ปัจจุบัน
 
 ---
 <!-- _class: dense -->
