@@ -3,7 +3,7 @@ marp: true
 theme: mahidol
 paginate: true
 size: 16:9
-footer: "Stat on Campus | Session 01 | Generative AI for Data Work"
+footer: "AI for Data | Session 01 | Generative AI for Data Work"
 math: katex
 ---
 
